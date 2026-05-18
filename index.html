@@ -1,0 +1,2554 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Die Perfekte Verpackung – Mathe Klasse 9</title>
+<link href="https://fonts.googleapis.com/css2?family=Boogaloo&family=Nunito:wght@400;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --yellow: #FFD93D;
+    --orange: #FF6B35;
+    --teal: #00C9A7;
+    --purple: #6C63FF;
+    --pink: #FF6B9D;
+    --blue: #00B4D8;
+    --dark: #1A1A2E;
+    --mid: #16213E;
+    --light: #F8F9FA;
+    --white: #FFFFFF;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--dark);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ====== NAV ====== */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(26,26,46,0.95);
+    backdrop-filter: blur(12px);
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid rgba(255,211,61,0.2);
+  }
+
+  .nav-logo {
+    font-family: 'Boogaloo', cursive;
+    font-size: 1.4rem;
+    color: var(--yellow);
+    letter-spacing: 1px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 8px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 20px;
+    transition: all 0.2s;
+  }
+
+  .nav-links a:hover {
+    background: var(--yellow);
+    color: var(--dark);
+  }
+
+  /* ====== HERO ====== */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 100px 24px 60px;
+    text-align: center;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(108,99,255,0.3) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(0,201,167,0.25) 0%, transparent 55%),
+      radial-gradient(ellipse at 60% 80%, rgba(255,107,53,0.2) 0%, transparent 50%),
+      var(--dark);
+  }
+
+  /* Floating 3D shapes */
+  .shape {
+    position: absolute;
+    border-radius: 8px;
+    opacity: 0.12;
+    animation: float linear infinite;
+  }
+
+  .shape-1 { width: 80px; height: 80px; background: var(--yellow); top: 15%; left: 8%; animation-duration: 14s; transform: rotate(30deg); }
+  .shape-2 { width: 120px; height: 60px; background: var(--teal); top: 60%; left: 5%; animation-duration: 18s; animation-delay: -4s; border-radius: 50%; }
+  .shape-3 { width: 60px; height: 100px; background: var(--purple); top: 25%; right: 10%; animation-duration: 12s; animation-delay: -8s; border-radius: 50% 0 50% 0; }
+  .shape-4 { width: 90px; height: 90px; background: var(--pink); top: 75%; right: 8%; animation-duration: 16s; animation-delay: -2s; transform: rotate(15deg); }
+  .shape-5 { width: 50px; height: 50px; background: var(--blue); top: 40%; right: 20%; animation-duration: 10s; animation-delay: -6s; border-radius: 50%; }
+  .shape-6 { width: 70px; height: 70px; background: var(--orange); top: 80%; left: 25%; animation-duration: 20s; animation-delay: -10s; transform: rotate(45deg); }
+
+  @keyframes float {
+    0% { transform: translateY(0px) rotate(var(--r, 0deg)); }
+    33% { transform: translateY(-25px) rotate(calc(var(--r, 0deg) + 10deg)); }
+    66% { transform: translateY(15px) rotate(calc(var(--r, 0deg) - 5deg)); }
+    100% { transform: translateY(0px) rotate(var(--r, 0deg)); }
+  }
+
+  .hero-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--teal);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    position: relative;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .hero-title {
+    font-family: 'Boogaloo', cursive;
+    font-size: clamp(3.5rem, 10vw, 7rem);
+    line-height: 1.0;
+    position: relative;
+    animation: fadeUp 0.8s ease 0.15s both;
+  }
+
+  .hero-title .line1 { color: var(--white); display: block; }
+  .hero-title .line2 {
+    display: block;
+    background: linear-gradient(135deg, var(--yellow), var(--orange));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    margin-top: 24px;
+    font-size: 1.15rem;
+    color: rgba(255,255,255,0.65);
+    max-width: 560px;
+    line-height: 1.7;
+    position: relative;
+    animation: fadeUp 0.8s ease 0.3s both;
+  }
+
+  .hero-badges {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 32px;
+    position: relative;
+    animation: fadeUp 0.8s ease 0.45s both;
+  }
+
+  .badge {
+    padding: 8px 18px;
+    border-radius: 30px;
+    font-weight: 800;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+  }
+
+  .badge-yellow { background: var(--yellow); color: var(--dark); }
+  .badge-teal { background: var(--teal); color: var(--dark); }
+  .badge-purple { background: var(--purple); color: white; }
+
+  .hero-cta {
+    margin-top: 48px;
+    position: relative;
+    animation: fadeUp 0.8s ease 0.6s both;
+  }
+
+  .btn-main {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, var(--yellow), var(--orange));
+    color: var(--dark);
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 1.1rem;
+    padding: 16px 36px;
+    border-radius: 50px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s;
+    box-shadow: 0 8px 30px rgba(255,107,53,0.4);
+  }
+
+  .btn-main:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 14px 40px rgba(255,107,53,0.55);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ====== SCROLL INDICATOR ====== */
+  .scroll-hint {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,255,255,0.4);
+    font-size: 0.75rem;
+    animation: bounce 2s ease infinite;
+  }
+
+  .scroll-hint span { font-size: 1.5rem; }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+
+  /* ====== SECTIONS ====== */
+  section { padding: 80px 24px; }
+
+  .section-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: inline-block;
+  }
+
+  .section-title {
+    font-family: 'Boogaloo', cursive;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+
+  .section-desc {
+    color: rgba(255,255,255,0.6);
+    font-size: 1.05rem;
+    max-width: 600px;
+    line-height: 1.7;
+    margin-bottom: 48px;
+  }
+
+  /* ====== MISSION SECTION ====== */
+  #mission {
+    background: linear-gradient(180deg, var(--dark) 0%, var(--mid) 100%);
+  }
+
+  .mission-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 48px;
+  }
+
+  .mission-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px;
+    padding: 32px;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mission-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    border-radius: 20px 20px 0 0;
+  }
+
+  .mission-card.yellow::before { background: var(--yellow); }
+  .mission-card.teal::before { background: var(--teal); }
+  .mission-card.purple::before { background: var(--purple); }
+  .mission-card.orange::before { background: var(--orange); }
+  .mission-card.pink::before { background: var(--pink); }
+
+  .mission-card:hover {
+    transform: translateY(-6px);
+    background: rgba(255,255,255,0.07);
+    border-color: rgba(255,255,255,0.14);
+  }
+
+  .mission-icon {
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .mission-card h3 {
+    font-size: 1.2rem;
+    font-weight: 900;
+    margin-bottom: 10px;
+    color: var(--white);
+  }
+
+  .mission-card p {
+    color: rgba(255,255,255,0.6);
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+
+  /* ====== ANFORDERUNGEN ====== */
+  #anforderungen {
+    background: var(--mid);
+  }
+
+  .req-box {
+    background: rgba(255,211,61,0.06);
+    border: 2px solid rgba(255,211,61,0.25);
+    border-radius: 24px;
+    padding: 36px;
+    margin-bottom: 32px;
+  }
+
+  .req-box h3 {
+    font-family: 'Boogaloo', cursive;
+    font-size: 1.6rem;
+    color: var(--yellow);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .req-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .req-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 12px;
+    padding: 14px 18px;
+    font-size: 0.97rem;
+    line-height: 1.5;
+  }
+
+  .req-check {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 900;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .req-check.yellow { background: var(--yellow); color: var(--dark); }
+  .req-check.teal { background: var(--teal); color: var(--dark); }
+  .req-check.purple { background: var(--purple); color: white; }
+
+  .highlight-number {
+    font-family: 'Boogaloo', cursive;
+    font-size: 1.3rem;
+    color: var(--yellow);
+  }
+
+  /* volume visual */
+  .volume-visual {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    margin: 32px 0;
+    flex-wrap: wrap;
+  }
+
+  .vol-bar-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .vol-bottle {
+    width: 60px;
+    height: 90px;
+    border-radius: 8px 8px 4px 4px;
+    position: relative;
+    overflow: hidden;
+    border: 3px solid rgba(255,255,255,0.2);
+  }
+
+  .vol-fill {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, var(--teal), var(--blue));
+    transition: height 1s ease;
+    border-radius: 0 0 2px 2px;
+  }
+
+  .vol-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.6);
+  }
+
+  .vol-arrow {
+    font-size: 2rem;
+    color: var(--yellow);
+    font-weight: 900;
+  }
+
+  /* ====== PHASEN ====== */
+  #phasen {
+    background: var(--dark);
+  }
+
+  .phases-timeline {
+    position: relative;
+    padding-left: 40px;
+  }
+
+  .phases-timeline::before {
+    content: '';
+    position: absolute;
+    left: 18px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(to bottom, var(--yellow), var(--orange), var(--pink), var(--purple));
+    border-radius: 4px;
+  }
+
+  .phase-item {
+    position: relative;
+    margin-bottom: 40px;
+    padding-left: 28px;
+  }
+
+  .phase-dot {
+    position: absolute;
+    left: -50px;
+    top: 12px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Boogaloo', cursive;
+    font-size: 1.2rem;
+    color: var(--dark);
+    font-weight: 700;
+    box-shadow: 0 0 0 4px var(--dark);
+  }
+
+  .phase-dot.p1 { background: var(--yellow); }
+  .phase-dot.p2 { background: var(--orange); }
+  .phase-dot.p3 { background: var(--pink); }
+  .phase-dot.p4 { background: var(--purple); }
+
+  .phase-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 28px;
+    transition: all 0.3s;
+  }
+
+  .phase-card:hover {
+    background: rgba(255,255,255,0.07);
+    transform: translateX(6px);
+  }
+
+  .phase-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+
+  .phase-emoji { font-size: 1.8rem; }
+
+  .phase-card h3 {
+    font-family: 'Boogaloo', cursive;
+    font-size: 1.4rem;
+    line-height: 1.1;
+  }
+
+  .phase-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    padding: 3px 10px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    margin-left: auto;
+  }
+
+  .phase-tag.eigen { background: rgba(0,201,167,0.2); color: var(--teal); }
+  .phase-tag.neu { background: rgba(108,99,255,0.2); color: var(--purple); }
+  .phase-tag.pflicht { background: rgba(255,107,53,0.2); color: var(--orange); }
+
+  .phase-steps {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .phase-steps li {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    font-size: 0.93rem;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.5;
+  }
+
+  .step-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--yellow);
+    margin-top: 8px;
+    flex-shrink: 0;
+  }
+
+  /* ====== VIDEO SECTION ====== */
+  #video {
+    background: linear-gradient(135deg, rgba(108,99,255,0.08) 0%, rgba(0,201,167,0.06) 100%), var(--mid);
+  }
+
+  .video-card {
+    background: rgba(255,255,255,0.04);
+    border: 2px solid rgba(108,99,255,0.3);
+    border-radius: 24px;
+    padding: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+
+  .video-tips {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .tip-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .tip-num {
+    width: 36px;
+    height: 36px;
+    background: var(--purple);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+  }
+
+  .tip-item h4 {
+    font-weight: 800;
+    margin-bottom: 4px;
+    font-size: 0.95rem;
+  }
+
+  .tip-item p {
+    color: rgba(255,255,255,0.6);
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+
+  .video-mock {
+    background: var(--dark);
+    border-radius: 16px;
+    aspect-ratio: 16/9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    border: 2px dashed rgba(108,99,255,0.3);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .video-mock::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 50%, rgba(108,99,255,0.15) 0%, transparent 70%);
+  }
+
+  .play-btn {
+    width: 64px;
+    height: 64px;
+    background: var(--purple);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.2s;
+    animation: pulse 2.5s ease infinite;
+  }
+
+  .play-btn:hover { transform: scale(1.1); }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(108,99,255,0.6); }
+    50% { box-shadow: 0 0 0 16px rgba(108,99,255,0); }
+  }
+
+  .video-mock p {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 2px;
+  }
+
+  /* ====== BEWERTUNG ====== */
+  #bewertung {
+    background: var(--dark);
+  }
+
+  .bewertung-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .bew-card {
+    border-radius: 20px;
+    padding: 28px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s;
+  }
+
+  .bew-card:hover { transform: translateY(-5px); }
+
+  .bew-card.c1 { background: linear-gradient(135deg, rgba(255,211,61,0.12), rgba(255,107,53,0.08)); border: 1px solid rgba(255,211,61,0.2); }
+  .bew-card.c2 { background: linear-gradient(135deg, rgba(255,107,53,0.12), rgba(255,107,157,0.08)); border: 1px solid rgba(255,107,53,0.2); }
+  .bew-card.c3 { background: linear-gradient(135deg, rgba(108,99,255,0.12), rgba(0,180,216,0.08)); border: 1px solid rgba(108,99,255,0.2); }
+  .bew-card.c4 { background: linear-gradient(135deg, rgba(0,201,167,0.12), rgba(0,180,216,0.08)); border: 1px solid rgba(0,201,167,0.2); }
+  .bew-card.c5 { background: linear-gradient(135deg, rgba(255,107,157,0.12), rgba(108,99,255,0.08)); border: 1px solid rgba(255,107,157,0.2); }
+
+  .bew-roman {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    opacity: 0.6;
+    margin-bottom: 8px;
+  }
+
+  .bew-card h3 {
+    font-family: 'Boogaloo', cursive;
+    font-size: 1.35rem;
+    margin-bottom: 4px;
+  }
+
+  .bew-emoji { font-size: 2rem; margin-bottom: 12px; display: block; }
+
+  .bew-items {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 14px;
+  }
+
+  .bew-items li {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.65);
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    line-height: 1.4;
+  }
+
+  .bew-items li::before {
+    content: '→';
+    flex-shrink: 0;
+    opacity: 0.5;
+  }
+
+  .neu-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: var(--purple);
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 900;
+    padding: 2px 8px;
+    border-radius: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    vertical-align: middle;
+    margin-left: 6px;
+  }
+
+  /* ====== TIPPS ====== */
+  #tipps {
+    background: var(--mid);
+  }
+
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .tip-card {
+    background: rgba(255,255,255,0.04);
+    border-radius: 16px;
+    padding: 24px;
+    border: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    transition: all 0.3s;
+  }
+
+  .tip-card:hover {
+    background: rgba(255,255,255,0.07);
+    transform: translateY(-3px);
+  }
+
+  .tip-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+  }
+
+  .tip-card h4 {
+    font-weight: 900;
+    margin-bottom: 6px;
+    font-size: 1rem;
+  }
+
+  .tip-card p {
+    color: rgba(255,255,255,0.6);
+    font-size: 0.88rem;
+    line-height: 1.55;
+  }
+
+  /* ====== ABGABE ====== */
+  #abgabe {
+    background: var(--dark);
+  }
+
+  .abgabe-checklist {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .check-item {
+    background: rgba(0,201,167,0.06);
+    border: 1px solid rgba(0,201,167,0.2);
+    border-radius: 14px;
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 0.93rem;
+    font-weight: 700;
+    transition: all 0.2s;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .check-item:hover {
+    background: rgba(0,201,167,0.1);
+  }
+
+  .check-item.done {
+    background: rgba(0,201,167,0.15);
+    border-color: var(--teal);
+  }
+
+  .check-box {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    border: 2px solid rgba(0,201,167,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+  }
+
+  .check-item.done .check-box {
+    background: var(--teal);
+    border-color: var(--teal);
+  }
+
+  /* ====== FOOTER ====== */
+  footer {
+    background: rgba(255,255,255,0.03);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 40px 24px;
+    text-align: center;
+    color: rgba(255,255,255,0.35);
+    font-size: 0.85rem;
+  }
+
+  footer strong { color: var(--yellow); }
+
+  /* ====== SCROLL ANIMATION ====== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ====== RESPONSIVE ====== */
+  @media (max-width: 768px) {
+    .mission-grid,
+    .bewertung-grid,
+    .tips-grid,
+    .abgabe-checklist { grid-template-columns: 1fr; }
+    .video-card { grid-template-columns: 1fr; }
+    .phases-timeline { padding-left: 24px; }
+    .phase-dot { left: -34px; width: 28px; height: 28px; font-size: 0.9rem; }
+    .phases-timeline::before { left: 10px; }
+    nav { padding: 10px 16px; }
+    .nav-links { display: none; }
+    .bewertung-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* ====== KI SECTION ====== */
+  #ki {
+    background: linear-gradient(135deg, rgba(255,107,157,0.06) 0%, rgba(108,99,255,0.06) 100%), var(--mid);
+  }
+
+  .ki-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+
+  .ki-allowed, .ki-not {
+    border-radius: 20px;
+    padding: 28px;
+  }
+
+  .ki-allowed {
+    background: rgba(0,201,167,0.08);
+    border: 1px solid rgba(0,201,167,0.2);
+  }
+
+  .ki-not {
+    background: rgba(255,107,53,0.08);
+    border: 1px solid rgba(255,107,53,0.2);
+  }
+
+  .ki-allowed h3, .ki-not h3 {
+    font-family: 'Boogaloo', cursive;
+    font-size: 1.4rem;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .ki-allowed h3 { color: var(--teal); }
+  .ki-not h3 { color: var(--orange); }
+
+  .ki-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .ki-list li {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.7);
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    line-height: 1.5;
+  }
+
+  .ki-list li span { flex-shrink: 0; }
+
+  .ki-reflexion {
+    background: rgba(255,211,61,0.08);
+    border: 2px solid rgba(255,211,61,0.25);
+    border-radius: 20px;
+    padding: 28px;
+    margin-top: 24px;
+  }
+
+  .ki-reflexion h3 {
+    font-family: 'Boogaloo', cursive;
+    font-size: 1.4rem;
+    color: var(--yellow);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .ki-questions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .ki-q {
+    background: rgba(255,255,255,0.04);
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.7);
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    line-height: 1.5;
+  }
+
+  .ki-q::before {
+    content: '?';
+    width: 20px;
+    height: 20px;
+    background: var(--yellow);
+    color: var(--dark);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 0.75rem;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* ====== FOBIZZ BUTTON ====== */
+  .btn-fobizz {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, var(--teal), var(--blue));
+    color: var(--dark);
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 1.05rem;
+    padding: 15px 32px;
+    border-radius: 50px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s;
+    box-shadow: 0 8px 30px rgba(0,201,167,0.4);
+  }
+
+  .btn-fobizz:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 14px 40px rgba(0,201,167,0.55);
+  }
+
+  .fobizz-hero-wrap {
+    margin-top: 16px;
+    position: relative;
+    animation: fadeUp 0.8s ease 0.75s both;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .fobizz-hero-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  /* Floating fobizz button */
+  .fobizz-float {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+  }
+
+  .fobizz-float-label {
+    background: rgba(26,26,46,0.95);
+    color: rgba(255,255,255,0.7);
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 10px;
+    letter-spacing: 0.5px;
+    pointer-events: none;
+  }
+
+  .fobizz-float-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--teal), var(--blue));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    text-decoration: none;
+    box-shadow: 0 6px 24px rgba(0,201,167,0.5);
+    transition: all 0.25s;
+    animation: pulse-teal 3s ease infinite;
+  }
+
+  .fobizz-float-btn:hover {
+    transform: scale(1.12);
+    box-shadow: 0 10px 32px rgba(0,201,167,0.7);
+  }
+
+  @keyframes pulse-teal {
+    0%, 100% { box-shadow: 0 6px 24px rgba(0,201,167,0.5); }
+    50% { box-shadow: 0 6px 32px rgba(0,201,167,0.8), 0 0 0 8px rgba(0,201,167,0.1); }
+  }
+
+  /* KI section fobizz card */
+  .fobizz-section-card {
+    background: linear-gradient(135deg, rgba(0,201,167,0.1), rgba(0,180,216,0.08));
+    border: 2px solid rgba(0,201,167,0.35);
+    border-radius: 24px;
+    padding: 36px;
+    margin-top: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .fobizz-section-text h3 {
+    font-family: 'Boogaloo', cursive;
+    font-size: 1.6rem;
+    color: var(--teal);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .fobizz-section-text p {
+    color: rgba(255,255,255,0.65);
+    font-size: 0.93rem;
+    line-height: 1.6;
+    max-width: 480px;
+  }
+
+  /* nav fobizz link */
+  .nav-fobizz {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: linear-gradient(135deg, var(--teal), var(--blue));
+    color: var(--dark) !important;
+    font-weight: 900 !important;
+    padding: 6px 14px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+    box-shadow: 0 3px 12px rgba(0,201,167,0.3);
+  }
+
+  .nav-fobizz:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 18px rgba(0,201,167,0.5);
+    background: linear-gradient(135deg, var(--teal), var(--blue)) !important;
+    color: var(--dark) !important;
+  }
+
+  /* hero canvas */
+  canvas#heroCanvas {
+    position: absolute;
+    inset: 0;
+    opacity: 0.3;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">📦 Die Perfekte Verpackung</div>
+  <ul class="nav-links">
+    <li><a href="#mission">Auftrag</a></li>
+    <li><a href="#anforderungen">Anforderungen</a></li>
+    <li><a href="#phasen">Phasen</a></li>
+    <li><a href="#video">Erklärvideo</a></li>
+    <li><a href="#ki-bild">KI-Bild</a></li>
+    <li><a href="#ki">KI-Einsatz</a></li>
+    <li><a href="#bewertung">Bewertung</a></li>
+    <li><a href="#formeln">Formeln</a></li>
+    <li><a href="#abgabe">Checkliste</a></li>
+    <li><a href="https://app.fobizz.com/ai/chats/public_assistants/484b9106-be89-4310-8ae7-16ecf67c8592?token=88e52c7ac885c9795c8be795b3ed4ac5" target="_blank" class="nav-fobizz">🤖 KI-Assistent</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <canvas id="heroCanvas"></canvas>
+
+  <div class="shape shape-1"></div>
+  <div class="shape shape-2"></div>
+  <div class="shape shape-3"></div>
+  <div class="shape shape-4"></div>
+  <div class="shape shape-5"></div>
+  <div class="shape shape-6"></div>
+
+  <p class="hero-eyebrow">Mathematik · Klasse 9 E-Kurs · ALB 2025</p>
+  <h1 class="hero-title">
+    <span class="line1">Die Perfekte</span>
+    <span class="line2">Verpackung</span>
+  </h1>
+  <p class="hero-sub">
+    Ihr entwerft gemeinsam eine Verpackung aus drei Körpern, berechnet Volumen und Oberfläche – und erklärt alles im Video. Kein Test. Kein Vortrag. Euer echtes Projekt.
+  </p>
+
+  <div class="hero-badges">
+    <span class="badge badge-yellow">📐 Konstruktionszeichnung</span>
+    <span class="badge badge-teal">🧮 Berechnungen</span>
+    <span class="badge badge-purple">🎬 Erklärvideo</span>
+    <span class="badge" style="background:var(--pink);color:var(--dark);">🎨 KI-Visualisierung NEU</span>
+  </div>
+
+  <div class="hero-cta">
+    <a href="#mission" class="btn-main">Los geht's ↓</a>
+  </div>
+
+  <div class="fobizz-hero-wrap">
+    <span class="fobizz-hero-label">Braucht ihr Hilfe?</span>
+    <a href="https://app.fobizz.com/ai/chats/public_assistants/484b9106-be89-4310-8ae7-16ecf67c8592?token=88e52c7ac885c9795c8be795b3ed4ac5" target="_blank" class="btn-fobizz">🤖 KI-Assistent öffnen</a>
+  </div>
+
+  <div class="scroll-hint">
+    <span>↓</span>
+    <p>Scroll nach unten</p>
+  </div>
+</section>
+
+<!-- MISSION -->
+<section id="mission">
+  <div class="section-inner">
+    <span class="section-tag reveal" style="color: var(--teal);">Euer Auftrag</span>
+    <h2 class="section-title reveal">Was macht ihr eigentlich?</h2>
+    <p class="section-desc reveal">Statt einer Klassenarbeit zeigt ihr euer Können durch ein echtes Projekt. Ihr entwerft, rechnet, erklärt – und visualisiert eure Verpackung mit KI.</p>
+
+    <!-- Partnerarbeit-Box -->
+    <div class="reveal" style="background: linear-gradient(135deg, rgba(0,201,167,0.1), rgba(0,180,216,0.08)); border: 2px solid rgba(0,201,167,0.35); border-radius: 20px; padding: 28px; margin-bottom: 36px;">
+      <h3 style="font-family:'Boogaloo',cursive; font-size:1.4rem; color:var(--teal); margin-bottom:16px; display:flex; align-items:center; gap:10px;">👥 Partnerarbeit – verbindliche Aufgabenteilung im Video</h3>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px;">
+        <div style="background:rgba(255,255,255,0.05); border-radius:12px; padding:16px; border-left: 4px solid var(--teal);">
+          <p style="font-weight:900; font-size:0.95rem; color:var(--teal); margin-bottom:8px;">Person A – erklärt im Video:</p>
+          <p style="font-size:0.88rem; color:rgba(255,255,255,0.75); line-height:1.6;">Zylinder und Dreiecksprisma<br>→ Volumen + Oberfläche</p>
+        </div>
+        <div style="background:rgba(255,255,255,0.05); border-radius:12px; padding:16px; border-left: 4px solid var(--blue);">
+          <p style="font-weight:900; font-size:0.95rem; color:var(--blue); margin-bottom:8px;">Person B – erklärt im Video:</p>
+          <p style="font-size:0.88rem; color:rgba(255,255,255,0.75); line-height:1.6;">Dritter Körper und Gesamtvolumen<br>→ Volumen + Oberfläche</p>
+        </div>
+      </div>
+      <p style="font-size:0.85rem; color:rgba(255,255,255,0.6); background:rgba(255,165,0,0.1); border-radius:8px; padding:10px 14px; margin:0;">
+        ⚠️ <strong style="color:white;">Fachgespräch:</strong> Beide Personen werden einzeln geprüft – und müssen alle Rechnungen erklären können, nicht nur den eigenen Teil.
+      </p>
+    </div>
+
+    <div class="mission-grid">
+      <div class="mission-card yellow reveal">
+        <span class="mission-icon">📐</span>
+        <h3>Ihr entwerft</h3>
+        <p>Gemeinsam eine Verpackung aus drei Körpern. Konstruktionszeichnung und Netz zeigen, dass ihr wirklich verstanden habt, wie diese Körper zusammenpassen.</p>
+      </div>
+      <div class="mission-card teal reveal">
+        <span class="mission-icon">🧮</span>
+        <h3>Ihr berechnet</h3>
+        <p>Volumen und Oberfläche aller Teilkörper und des Gesamtkörpers. Handschriftlich, mit Formel und Einheit. Das ist der Kern des Projekts.</p>
+      </div>
+      <div class="mission-card purple reveal">
+        <span class="mission-icon">🎬</span>
+        <h3>Ihr erklärt</h3>
+        <p>In einem gemeinsamen Video (3–5 Min.) erklärt jede Person ihren Teil – mit fester Aufgabenteilung und KI-Reflexion am Ende.</p>
+      </div>
+      <div class="mission-card pink reveal">
+        <span class="mission-icon">🎨</span>
+        <h3>Ihr visualisiert</h3>
+        <p>Mit einem KI-Bildgenerator (fobizz oder Canva AI) erstellt ihr gemeinsam ein realistisches Bild eurer Verpackung – und reflektiert den Prozess schriftlich.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ANFORDERUNGEN -->
+<section id="anforderungen">
+  <div class="section-inner">
+    <span class="section-tag reveal" style="color: var(--yellow);">Die Regeln</span>
+    <h2 class="section-title reveal">Was muss eure Verpackung können?</h2>
+    <p class="section-desc reveal">Eure Verpackung ist kein freies Kunstwerk – sie muss konkrete mathematische Bedingungen erfüllen.</p>
+
+    <div class="volume-visual reveal">
+      <div class="vol-bar-wrap">
+        <div class="vol-bottle" style="height:60px;">
+          <div class="vol-fill" style="height:67%;" id="v1fill"></div>
+        </div>
+        <span class="vol-label">0,5 L</span>
+        <span style="font-size:0.75rem;color:var(--teal);">Minimum</span>
+      </div>
+      <div class="vol-arrow">←</div>
+      <div class="vol-bar-wrap">
+        <div class="vol-bottle" style="height:110px; border-color: var(--yellow); border-width: 3px;">
+          <div class="vol-fill" style="height:75%; background: linear-gradient(to top, var(--yellow), var(--orange));"></div>
+        </div>
+        <span class="vol-label" style="color:var(--yellow);">Eure Verpackung</span>
+        <span style="font-size:0.75rem;color:var(--yellow);">0,5 – 1,5 L</span>
+      </div>
+      <div class="vol-arrow">→</div>
+      <div class="vol-bar-wrap">
+        <div class="vol-bottle" style="height:90px;">
+          <div class="vol-fill" style="height:80%;"></div>
+        </div>
+        <span class="vol-label">1,5 L</span>
+        <span style="font-size:0.75rem;color:var(--teal);">Maximum</span>
+      </div>
+    </div>
+
+    <div class="req-box reveal">
+      <h3>📦 Pflichtanforderungen</h3>
+      <ul class="req-list">
+        <li>
+          <span class="req-check yellow">✓</span>
+          <span>Genau <span class="highlight-number">3</span> Teilkörper: <strong>Zylinder</strong> (Pflicht) + <strong>Dreiecksprisma</strong> (Pflicht) + <strong>1 freier Körper</strong> eurer Wahl (z.&nbsp;B. Kegel, Quader, Halbkugel …)</span>
+        </li>
+        <li>
+          <span class="req-check yellow">✓</span>
+          <span>Gesamtvolumen zwischen <span class="highlight-number">0,5 L</span> und <span class="highlight-number">1,5 L</span> – ihr müsst das nachrechnen und nachweisen</span>
+        </li>
+        <li>
+          <span class="req-check teal">✓</span>
+          <span>Vollständige, bemaßte <strong>Konstruktionszeichnung</strong> – alle Maße drauf, alle drei Körper erkennbar</span>
+        </li>
+        <li>
+          <span class="req-check teal">✓</span>
+          <span>Vollständiges, bemaßtes <strong>Netz</strong> eurer Verpackung – so vollständig, dass jemand anderes sie danach bauen könnte</span>
+        </li>
+        <li>
+          <span class="req-check purple">✓</span>
+          <span>Kurze <strong>Begründung</strong>: Für welches Produkt ist eure Verpackung gedacht? Warum macht die Form Sinn?</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PHASEN -->
+<section id="phasen">
+  <div class="section-inner">
+    <span class="section-tag reveal" style="color: var(--orange);">Der Weg</span>
+    <h2 class="section-title reveal">Eure 4 Phasen</h2>
+    <p class="section-desc reveal">So baut ihr euer Projekt auf – Schritt für Schritt.</p>
+
+    <div class="phases-timeline">
+      <div class="phase-item reveal">
+        <div class="phase-dot p1">1</div>
+        <div class="phase-card">
+          <div class="phase-header">
+            <span class="phase-emoji">✏️</span>
+            <h3>Entwurf & Konstruktionszeichnung</h3>
+            <span class="phase-tag eigen">Eigenleistung</span>
+          </div>
+          <ul class="phase-steps">
+            <li><span class="step-dot"></span>Überlegt gemeinsam, welche drei Körper eure Verpackung haben soll, und macht eine erste Idee-Skizze</li>
+            <li><span class="step-dot"></span>Zeichne die bemaßte Konstruktionszeichnung – alle Maße müssen drauf</li>
+            <li><span class="step-dot"></span>Zeichne das vollständige Netz mit allen bemaßten Flächen</li>
+            <li><span class="step-dot"></span>Schreibe 2–3 Sätze: Für welches Produkt ist die Verpackung? Warum diese Form?</li>
+            <li><span class="step-dot"></span>KI darf bei der Ideenfindung helfen – Zeichnung und Netz kommen von euch</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="phase-item reveal">
+        <div class="phase-dot p2">2</div>
+        <div class="phase-card">
+          <div class="phase-header">
+            <span class="phase-emoji">🧮</span>
+            <h3>Mathematische Berechnungen</h3>
+            <span class="phase-tag eigen">Eigenleistung</span>
+          </div>
+          <ul class="phase-steps">
+            <li><span class="step-dot"></span>Berechne Oberfläche und Volumen jedes Teilkörpers – handschriftlich</li>
+            <li><span class="step-dot"></span>Dann: Gesamtvolumen berechnen und prüfen ob es zwischen 0,5 L und 1,5 L liegt</li>
+            <li><span class="step-dot"></span>Jede Rechnung: Formel → Werte einsetzen → Ergebnis mit Einheit</li>
+            <li><span class="step-dot"></span>Wenn das Volumen nicht passt: Maße anpassen und neu rechnen</li>
+            <li><span class="step-dot"></span>KI darf zur Formelrecherche genutzt werden – rechnen müsst ihr selbst</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="phase-item reveal">
+        <div class="phase-dot p3">3</div>
+        <div class="phase-card">
+          <div class="phase-header">
+            <span class="phase-emoji">🎬</span>
+            <h3>Erklärvideo erstellen</h3>
+            <span class="phase-tag neu">★ NEU</span>
+          </div>
+          <ul class="phase-steps">
+            <li><span class="step-dot"></span><strong>Person A erklärt:</strong> Zylinder und Dreiecksprisma – Volumen und Oberfläche</li>
+            <li><span class="step-dot"></span><strong>Person B erklärt:</strong> Dritter Körper und Gesamtvolumen – Volumen und Oberfläche</li>
+            <li><span class="step-dot"></span>Gemeinsame Vorstellung der Verpackung am Anfang (Idee, Maße, Produkt)</li>
+            <li><span class="step-dot"></span>Jede Person zeigt einen Reflexionsmoment (Fehlerkorrektur oder Überlegung)</li>
+            <li><span class="step-dot"></span>Gemeinsamer Abschluss (ca. 30 Sek.): welche KI-Tools genutzt und wofür?</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="phase-item reveal">
+        <div class="phase-dot p4">4</div>
+        <div class="phase-card">
+          <div class="phase-header">
+            <span class="phase-emoji">🎨</span>
+            <h3>KI-Visualisierung</h3>
+            <span class="phase-tag neu">★ NEU – Pflicht</span>
+          </div>
+          <ul class="phase-steps">
+            <li><span class="step-dot"></span>Schreibt einen detaillierten Prompt, der Form, Farbe, Material und Produktbezug eurer Verpackung beschreibt</li>
+            <li><span class="step-dot"></span>Generiert euer Bild mit <strong>fobizz Bildgenerator</strong> oder <strong><a href="https://www.canva.com/brand/join?token=ldRfSllL6NKNSMavVeET1Q&brandingVariant=edu&invitationDestinationType=group" target="_blank" style="color:var(--blue);text-decoration:none;border-bottom:1px dashed var(--blue);">Canva AI → Jetzt beitreten</a></strong></li>
+            <li><span class="step-dot"></span>Verfeinert euren Prompt mindestens zweimal – bis das Bild realistisch und erkennbar ist</li>
+            <li><span class="step-dot"></span>Wählt euer bestes Ergebnis als finales Bild</li>
+            <li><span class="step-dot"></span>Gib Bild + finalen Prompt + schriftliche Reflexion in der Projektmappe ab</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO -->
+<section id="video">
+  <div class="section-inner">
+    <span class="section-tag reveal" style="color: var(--purple);">Das Neue</span>
+    <h2 class="section-title reveal">Euer Erklärvideo</h2>
+    <p class="section-desc reveal">Kein Vortrag, keine Präsentation – ihr erklärt eure Rechnungen gemeinsam in einem Video. 3 bis 5 Minuten. Feste Aufgabenteilung, echtes Verständnis.</p>
+
+    <div class="video-card reveal">
+      <div class="video-tips">
+        <div class="tip-item">
+          <div class="tip-num">1</div>
+          <div>
+            <h4>Aufgabenteilung einhalten</h4>
+            <p>Person A: Zylinder + Dreiecksprisma. Person B: Dritter Körper + Gesamtvolumen. Beides handschriftlich zeigen.</p>
+          </div>
+        </div>
+        <div class="tip-item">
+          <div class="tip-num">2</div>
+          <div>
+            <h4>Jede Person erklärt ihren Teil</h4>
+            <p>Formel benennen → Werte einsetzen → Ergebnis erklären. Ihr seid beide für euren Teil verantwortlich.</p>
+          </div>
+        </div>
+        <div class="tip-item">
+          <div class="tip-num">3</div>
+          <div>
+            <h4>Reflexionsmoment zeigen</h4>
+            <p>Jede Person erklärt einen Moment, wo etwas überlegt oder korrigiert wurde. Das zeigt echtes Verständnis.</p>
+          </div>
+        </div>
+        <div class="tip-item">
+          <div class="tip-num">4</div>
+          <div>
+            <h4>Gemeinsamer Abschluss</h4>
+            <p>Am Ende gemeinsam: Welche KI-Tools haben wir genutzt und wofür? 30 Sekunden reichen.</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="video-mock">
+          <div class="play-btn">▶</div>
+          <p>EUER ERKLÄRVIDEO</p>
+        </div>
+        <div style="margin-top:16px; padding:16px; background:rgba(255,255,255,0.04); border-radius:12px;">
+          <p style="font-size:0.85rem; color:rgba(255,255,255,0.6); line-height:1.6;">
+            💡 <strong style="color:white;">Technik-Tipps:</strong> Handy-Kamera, Bildschirmaufnahme oder beides kombiniert. Abgabe als Datei oder Link über Microsoft Teams.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KI-VISUALISIERUNG -->
+<section id="ki-bild" style="background: linear-gradient(135deg, rgba(177,23,158,0.08) 0%, rgba(108,99,255,0.06) 100%), var(--dark); padding: 80px 24px;">
+  <div class="section-inner">
+    <span class="section-tag reveal" style="color: var(--pink);">★ NEU – Pflicht</span>
+    <h2 class="section-title reveal">Phase 4: KI-Visualisierung</h2>
+    <p class="section-desc reveal">Hier ist KI keine Ergänzung – hier ist KI die Aufgabe. Ihr erstellt gemeinsam auf Basis eurer Konstruktionszeichnung ein realistisches Bild eurer Verpackung.</p>
+
+    <div class="mission-grid reveal">
+      <div class="mission-card purple" style="border-top-color: var(--pink);">
+        <span class="mission-icon">✍️</span>
+        <h3>Prompt schreiben</h3>
+        <p>Beschreibt eure Verpackung so genau wie möglich: Form, Körper, Farbe, Material, Produkt. Je präziser, desto besser das Ergebnis.</p>
+      </div>
+      <div class="mission-card teal" style="border-top-color: var(--pink);">
+        <span class="mission-icon">🔁</span>
+        <h3>Verfeinern</h3>
+        <p>Erstes Ergebnis oft noch ungenau. Ändert euren Prompt mindestens zweimal gezielt – und notiert was ihr warum geändert habt.</p>
+      </div>
+      <div class="mission-card yellow" style="border-top-color: var(--pink);">
+        <span class="mission-icon">🖼️</span>
+        <h3>Finales Bild wählen</h3>
+        <p>Wählt das realistischste Ergebnis aus. Euer Bild soll zeigen, wie die Verpackung in echt aussehen könnte.</p>
+      </div>
+      <div class="mission-card orange" style="border-top-color: var(--pink);">
+        <span class="mission-icon">📋</span>
+        <h3>Reflexion schreiben</h3>
+        <p>In der Projektmappe: Prompt + Prozess + Vergleich mit Zeichnung + was ihr gelernt habt. Das ist der bewertete Teil (6 Punkte).</p>
+      </div>
+    </div>
+
+    <div style="margin-top: 32px; background: rgba(177,23,158,0.08); border: 2px solid rgba(177,23,158,0.3); border-radius: 20px; padding: 28px;" class="reveal">
+      <h3 style="font-family:'Boogaloo',cursive; font-size:1.4rem; color:var(--pink); margin-bottom:16px;">🛠️ Erlaubte Tools</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div style="background:rgba(255,255,255,0.04);border-radius:12px;padding:16px;">
+          <p style="font-weight:900;font-size:0.95rem;margin-bottom:6px;">✅ fobizz Bildgenerator</p>
+          <p style="font-size:0.85rem;color:rgba(255,255,255,0.6);">Schul-lizenziertes Tool, kein eigener Account nötig. Direkt über den KI-Assistenten zugänglich.</p>
+        </div>
+        <div style="background:rgba(255,255,255,0.04);border-radius:12px;padding:16px;">
+          <p style="font-weight:900;font-size:0.95rem;margin-bottom:6px;">✅ Canva AI (Text to Image)</p>
+          <p style="font-size:0.85rem;color:rgba(255,255,255,0.6);margin-bottom:12px;">Im Canva-Schullizenz-Account verfügbar. Einfach zu bedienen, gute Ergebnisse für Produktvisualisierungen.</p>
+          <a href="https://www.canva.com/brand/join?token=ldRfSllL6NKNSMavVeET1Q&brandingVariant=edu&invitationDestinationType=group" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#2E75B6,#00B4D8);color:white;text-decoration:none;font-weight:900;font-size:0.82rem;padding:8px 16px;border-radius:20px;transition:all 0.2s;box-shadow:0 4px 14px rgba(46,117,182,0.4);" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 20px rgba(46,117,182,0.6)'" onmouseout="this.style.transform='';this.style.boxShadow='0 4px 14px rgba(46,117,182,0.4)'">
+            🎨 Jetzt Canva beitreten
+          </a>
+        </div>
+      </div>
+      <p style="margin-top:16px;font-size:0.85rem;color:rgba(255,255,255,0.5);">❌ Nicht erlaubt: private Midjourney-Accounts, DALL·E 3 ohne Schullizenz oder ähnliche kommerzielle Plattformen.</p>
+      <div style="margin-top:16px;padding:14px 18px;background:rgba(46,117,182,0.12);border:1px solid rgba(46,117,182,0.3);border-radius:12px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+        <p style="font-size:0.88rem;color:rgba(255,255,255,0.8);margin:0;">Noch kein Canva-Account? Hier könnt ihr eurem Klassen-Team beitreten:</p>
+        <a href="https://www.canva.com/brand/join?token=ldRfSllL6NKNSMavVeET1Q&brandingVariant=edu&invitationDestinationType=group" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#2E75B6,#00B4D8);color:white;text-decoration:none;font-weight:900;font-size:0.88rem;padding:10px 20px;border-radius:24px;white-space:nowrap;box-shadow:0 4px 16px rgba(0,180,216,0.35);transition:all 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(0,180,216,0.55)'" onmouseout="this.style.transform='';this.style.boxShadow='0 4px 16px rgba(0,180,216,0.35)'">
+          🎨 Canva-Klasse beitreten →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KI EINSATZ -->
+<section id="ki">
+  <div class="section-inner">
+    <span class="section-tag reveal" style="color: var(--pink);">KI & ihr</span>
+    <h2 class="section-title reveal">KI-Einsatz: So geht's richtig</h2>
+    <p class="section-desc reveal">KI darf und soll genutzt werden – aber ihr müsst am Ende des Videos dokumentieren, wie und wofür. Manche Dinge macht ihr selbst.</p>
+
+    <div class="ki-grid reveal">
+      <div class="ki-allowed">
+        <h3>✅ KI darf helfen bei …</h3>
+        <ul class="ki-list">
+          <li><span>💡</span>Ideen für die Verpackungsform finden</li>
+          <li><span>📖</span>Formeln nachschlagen und erklären lassen</li>
+          <li><span>✏️</span>Texte für die Video-Notizen gemeinsam formulieren</li>
+          <li><span>🔍</span>Rechnungen überprüfen lassen</li>
+          <li><span>🎨</span>Ideen für die Gestaltung eures Netzes</li>
+          <li><span>🌍</span>Beispiele aus dem Alltag recherchieren</li>
+        </ul>
+      </div>
+      <div class="ki-not">
+        <h3>❌ Das macht ihr selbst</h3>
+        <ul class="ki-list">
+          <li><span>✏️</span>Die Konstruktionszeichnung zeichnen</li>
+          <li><span>📐</span>Das Netz zeichnen und bemaßen</li>
+          <li><span>🧮</span>Die Rechnungen selbst durchführen</li>
+          <li><span>🎬</span>Das Video aufnehmen und erklären</li>
+          <li><span>💬</span>Das Fachgespräch führen</li>
+          <li><span>🗣️</span>Eure Entscheidungen können begründet werden (im Fachgespräch)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="ki-reflexion reveal">
+      <h3>📝 Am Ende eures Videos – diese Fragen beantwortet ihr gemeinsam</h3>
+      <div class="ki-questions">
+        <div class="ki-q">Welche KI-Tools habe ich genutzt? (z.&nbsp;B. ChatGPT, Canva AI, DeepL …)</div>
+        <div class="ki-q">Wofür genau haben wir KI eingesetzt?</div>
+        <div class="ki-q">Wofür haben wir KI bewusst nicht genutzt – und warum nicht?</div>
+        <div class="ki-q">Was hat die KI falsch oder unvollständig geliefert?</div>
+        <div class="ki-q">Was mussten wir selbst korrigieren oder ergänzen?</div>
+        <div class="ki-q">Was haben wir durch den KI-Einsatz gelernt?</div>
+      </div>
+    </div>
+
+    <div class="fobizz-section-card reveal">
+      <div class="fobizz-section-text">
+        <h3>🤖 Euer KI-Assistent</h3>
+        <p>Für dieses Projekt steht euch ein speziell eingerichteter KI-Assistent zur Verfügung. Er erklärt Formeln, hilft beim Verständnis und beantwortet Fragen – aber er rechnet nicht für euch. Öffnet ihn direkt hier:</p>
+      </div>
+      <a href="https://app.fobizz.com/ai/chats/public_assistants/484b9106-be89-4310-8ae7-16ecf67c8592?token=88e52c7ac885c9795c8be795b3ed4ac5" target="_blank" class="btn-fobizz" style="white-space:nowrap; flex-shrink:0;">
+        🤖 KI-Assistent öffnen
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- BEWERTUNG -->
+<section id="bewertung">
+  <div class="section-inner">
+    <span class="section-tag reveal" style="color: var(--blue);">Bewertung</span>
+    <h2 class="section-title reveal">So werdet ihr bewertet</h2>
+    <p class="section-desc reveal">Fünf Bereiche – der Schwerpunkt liegt auf den Berechnungen. Bereiche I–IV gelten gemeinsam, Bereich V wird für jede Person einzeln vergeben.</p>
+
+    <div class="bewertung-grid">
+      <div class="bew-card c1 reveal">
+        <p class="bew-roman">BEREICH I</p>
+        <span class="bew-emoji">✏️</span>
+        <h3>Entwurf & Konstruktion</h3>
+        <ul class="bew-items">
+          <li>Vollständige, bemaßte Konstruktionszeichnung</li>
+          <li>Vollständiges, bemaßtes Netz</li>
+          <li>Alle drei Pflicht-Körper vorhanden</li>
+          <li>Nachvollziehbarer Produktbezug</li>
+          <li>Kreativität & Sorgfalt</li>
+        </ul>
+      </div>
+
+      <div class="bew-card c2 reveal">
+        <p class="bew-roman">BEREICH II – Schwerpunkt</p>
+        <span class="bew-emoji">🧮</span>
+        <h3>Berechnungen</h3>
+        <ul class="bew-items">
+          <li>Volumen aller Teilkörper + Gesamtvolumen</li>
+          <li>Gesamtvolumen im erlaubten Bereich</li>
+          <li>Oberfläche aller relevanten Flächen</li>
+          <li>Formeln korrekt und ggf. umgestellt</li>
+          <li>Ergebnisse und Einheiten korrekt</li>
+        </ul>
+      </div>
+
+      <div class="bew-card c3 reveal">
+        <p class="bew-roman">BEREICH III <span class="neu-badge">★ NEU</span></p>
+        <span class="bew-emoji">🎬</span>
+        <h3>Erklärvideo</h3>
+        <ul class="bew-items">
+          <li>Erklärungen verständlich & in eigenen Worten</li>
+          <li>Alle Körper vollständig erklärt</li>
+          <li>Fachsprache korrekt verwendet</li>
+          <li>Reflexionsmoment sichtbar</li>
+          <li>KI-Reflexion am Ende des Videos</li>
+        </ul>
+      </div>
+
+      <div class="bew-card c4 reveal">
+        <p class="bew-roman">BEREICH IV <span class="neu-badge">★ NEU</span></p>
+        <span class="bew-emoji">🎨</span>
+        <h3>KI-Visualisierung</h3>
+        <ul class="bew-items">
+          <li>Finales KI-Bild realistisch & erkennbar <em>(Pflicht)</em></li>
+          <li>Finaler Prompt vollständig abgegeben <em>(Pflicht)</em></li>
+          <li>Prompt-Entwicklung: ≥ 2 Änderungen beschrieben</li>
+          <li>Bild mit Konstruktionszeichnung verglichen</li>
+          <li>Reflexion & Lerneffekt ehrlich beschrieben</li>
+        </ul>
+        <p style="margin-top:10px;font-size:0.8rem;color:rgba(255,255,255,0.5);">6 Punkte extra → Gesamt 68 Pkt.</p>
+      </div>
+
+      <div class="bew-card c5 reveal">
+        <p class="bew-roman">BEREICH V <span class="neu-badge">★ NEU</span></p>
+        <span class="bew-emoji">💬</span>
+        <h3>Fachgespräch (~5 Min.)</h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px;">
+          <div style="background:rgba(255,255,255,0.04);border-radius:10px;padding:12px;font-size:0.85rem;color:rgba(255,255,255,0.65);">→ Rückfragen inhaltlich korrekt beantwortet</div>
+          <div style="background:rgba(255,255,255,0.04);border-radius:10px;padding:12px;font-size:0.85rem;color:rgba(255,255,255,0.65);">→ Mathematische Fachsprache korrekt verwendet</div>
+          <div style="background:rgba(255,255,255,0.04);border-radius:10px;padding:12px;font-size:0.85rem;color:rgba(255,255,255,0.65);">→ Eigene Rechnungen können erklärt werden</div>
+          <div style="background:rgba(255,255,255,0.04);border-radius:10px;padding:12px;font-size:0.85rem;color:rgba(255,255,255,0.65);">→ KI-Einsatz kann reflektiert erläutert werden</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMEL CHEATSHEET -->
+<section id="formeln" style="background: linear-gradient(180deg, var(--dark) 0%, #0f0f1f 100%); padding: 80px 24px;">
+  <div class="section-inner">
+    <span class="section-tag reveal" style="color: var(--yellow);">Formelsammlung</span>
+    <h2 class="section-title reveal">Euer Formel-Cheatsheet</h2>
+    <p class="section-desc reveal">Alle Formeln aus der offiziellen ZP10-Formelsammlung NRW – direkt für euer Projekt aufbereitet. Klicke auf einen Körper, um die Details zu sehen.</p>
+
+    <style>
+      /* === CHEATSHEET STYLES === */
+      .cs-tabs {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 32px;
+      }
+
+      .cs-tab {
+        padding: 10px 20px;
+        border-radius: 30px;
+        border: 2px solid rgba(255,255,255,0.1);
+        background: rgba(255,255,255,0.04);
+        color: rgba(255,255,255,0.6);
+        font-family: 'Nunito', sans-serif;
+        font-weight: 800;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .cs-tab:hover { border-color: rgba(255,255,255,0.3); color: white; }
+
+      .cs-tab.active {
+        background: var(--yellow);
+        border-color: var(--yellow);
+        color: var(--dark);
+      }
+
+      .cs-panel { display: none; }
+      .cs-panel.active { display: block; }
+
+      .cs-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+      }
+
+      .cs-card {
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 20px;
+        overflow: hidden;
+        transition: transform 0.25s, border-color 0.25s;
+      }
+
+      .cs-card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(255,211,61,0.3);
+      }
+
+      .cs-card-header {
+        padding: 18px 20px 14px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        cursor: pointer;
+        user-select: none;
+      }
+
+      .cs-card-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.4rem;
+        flex-shrink: 0;
+      }
+
+      .cs-card-title {
+        flex: 1;
+      }
+
+      .cs-card-title h3 {
+        font-family: 'Boogaloo', cursive;
+        font-size: 1.25rem;
+        margin-bottom: 2px;
+      }
+
+      .cs-card-title p {
+        font-size: 0.78rem;
+        color: rgba(255,255,255,0.45);
+        font-family: 'Space Mono', monospace;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+
+      .cs-chevron {
+        font-size: 0.8rem;
+        color: rgba(255,255,255,0.3);
+        transition: transform 0.2s;
+      }
+
+      .cs-card.open .cs-chevron { transform: rotate(180deg); }
+
+      .cs-card-body {
+        display: none;
+        padding: 0 20px 20px;
+        border-top: 1px solid rgba(255,255,255,0.06);
+        margin-top: 0;
+      }
+
+      .cs-card.open .cs-card-body { display: block; }
+
+      /* Formula display */
+      .formula-block {
+        margin: 14px 0;
+      }
+
+      .formula-label {
+        font-size: 0.78rem;
+        color: rgba(255,255,255,0.45);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-family: 'Space Mono', monospace;
+        margin-bottom: 6px;
+      }
+
+      .formula {
+        background: rgba(255,211,61,0.08);
+        border: 1px solid rgba(255,211,61,0.2);
+        border-radius: 10px;
+        padding: 12px 16px;
+        font-family: 'Space Mono', monospace;
+        font-size: 1rem;
+        color: var(--yellow);
+        letter-spacing: 0.5px;
+      }
+
+      .formula .var {
+        color: var(--teal);
+        font-style: italic;
+      }
+
+      .formula .op {
+        color: rgba(255,255,255,0.6);
+      }
+
+      .formula-note {
+        margin-top: 8px;
+        font-size: 0.82rem;
+        color: rgba(255,255,255,0.5);
+        line-height: 1.5;
+      }
+
+      .formula-note strong { color: rgba(255,255,255,0.8); }
+
+      .formula-vars {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        margin-top: 10px;
+        padding: 10px 12px;
+        background: rgba(255,255,255,0.03);
+        border-radius: 8px;
+      }
+
+      .fvar {
+        display: flex;
+        gap: 8px;
+        font-size: 0.82rem;
+      }
+
+      .fvar-key {
+        font-family: 'Space Mono', monospace;
+        color: var(--teal);
+        min-width: 28px;
+        flex-shrink: 0;
+      }
+
+      .fvar-desc { color: rgba(255,255,255,0.55); }
+
+      /* Units table */
+      .units-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+
+      .unit-box {
+        background: rgba(255,255,255,0.04);
+        border-radius: 14px;
+        padding: 18px;
+        border: 1px solid rgba(255,255,255,0.06);
+      }
+
+      .unit-box h4 {
+        font-family: 'Boogaloo', cursive;
+        font-size: 1.1rem;
+        margin-bottom: 12px;
+        color: var(--teal);
+      }
+
+      .unit-chain {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .unit-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-family: 'Space Mono', monospace;
+        font-size: 0.8rem;
+      }
+
+      .unit-val {
+        color: var(--yellow);
+        min-width: 80px;
+      }
+
+      .unit-eq { color: rgba(255,255,255,0.35); }
+      .unit-res { color: rgba(255,255,255,0.65); }
+
+      .highlight-box {
+        background: linear-gradient(135deg, rgba(0,201,167,0.12), rgba(0,180,216,0.08));
+        border: 2px solid rgba(0,201,167,0.3);
+        border-radius: 12px;
+        padding: 12px 16px;
+        margin-top: 12px;
+        font-family: 'Space Mono', monospace;
+        font-size: 0.9rem;
+        color: var(--teal);
+        text-align: center;
+      }
+
+      .cs-source-note {
+        margin-top: 32px;
+        padding: 14px 20px;
+        background: rgba(255,255,255,0.03);
+        border-radius: 12px;
+        border: 1px solid rgba(255,255,255,0.06);
+        font-size: 0.82rem;
+        color: rgba(255,255,255,0.4);
+        text-align: center;
+      }
+
+      .cs-source-note strong { color: rgba(255,255,255,0.6); }
+
+      @media (max-width: 600px) {
+        .units-grid { grid-template-columns: 1fr; }
+        .cs-grid { grid-template-columns: 1fr; }
+      }
+    </style>
+
+    <!-- TABS -->
+    <div class="cs-tabs reveal">
+      <button class="cs-tab active" onclick="showTab('pflicht')">⭐ Pflicht-Körper</button>
+      <button class="cs-tab" onclick="showTab('weitere')">📦 Weitere Körper</button>
+      <button class="cs-tab" onclick="showTab('flaechen')">📐 Ebene Figuren</button>
+      <button class="cs-tab" onclick="showTab('einheiten')">📏 Einheiten</button>
+    </div>
+
+    <!-- PANEL: PFLICHT-KÖRPER -->
+    <div class="cs-panel active" id="tab-pflicht">
+      <div class="cs-grid">
+
+        <!-- ZYLINDER -->
+        <div class="cs-card" id="card-zylinder">
+          <div class="cs-card-header" onclick="toggleCard('card-zylinder')">
+            <div class="cs-card-icon" style="background: rgba(255,211,61,0.15);">🛢️</div>
+            <div class="cs-card-title">
+              <h3>Zylinder</h3>
+              <p>Pflicht · runde Grundfläche</p>
+            </div>
+            <span class="cs-chevron">▼</span>
+          </div>
+          <div class="cs-card-body">
+            <div class="formula-block">
+              <div class="formula-label">Grundfläche (Kreis)</div>
+              <div class="formula">G <span class="op">=</span> π <span class="op">·</span> <span class="var">r</span>²</div>
+            </div>
+            <div class="formula-block">
+              <div class="formula-label">Volumen</div>
+              <div class="formula">V <span class="op">=</span> G <span class="op">·</span> <span class="var">h</span> <span class="op">=</span> π <span class="op">·</span> <span class="var">r</span>² <span class="op">·</span> <span class="var">h</span></div>
+            </div>
+            <div class="formula-block">
+              <div class="formula-label">Mantelfläche</div>
+              <div class="formula">M <span class="op">=</span> 2π <span class="op">·</span> <span class="var">r</span> <span class="op">·</span> <span class="var">h</span></div>
+            </div>
+            <div class="formula-block">
+              <div class="formula-label">Oberfläche (gesamt)</div>
+              <div class="formula">O <span class="op">=</span> 2G <span class="op">+</span> M <span class="op">=</span> 2π<span class="var">r</span>² <span class="op">+</span> 2π<span class="var">r</span><span class="var">h</span></div>
+            </div>
+            <div class="formula-vars">
+              <div class="fvar"><span class="fvar-key">r</span><span class="fvar-desc">Radius der Grundfläche</span></div>
+              <div class="fvar"><span class="fvar-key">h</span><span class="fvar-desc">Höhe des Zylinders</span></div>
+              <div class="fvar"><span class="fvar-key">G</span><span class="fvar-desc">Grundfläche (Kreisfläche)</span></div>
+              <div class="fvar"><span class="fvar-key">M</span><span class="fvar-desc">Mantelfläche (= aufgerolltes Rechteck)</span></div>
+            </div>
+            <p class="formula-note">⚠️ Bei zusammengesetzten Körpern: Nur die <strong>sichtbaren Flächen</strong> zur Oberfläche zählen!</p>
+          </div>
+        </div>
+
+        <!-- DREIECKSPRISMA -->
+        <div class="cs-card" id="card-prisma">
+          <div class="cs-card-header" onclick="toggleCard('card-prisma')">
+            <div class="cs-card-icon" style="background: rgba(0,201,167,0.15);">🔺</div>
+            <div class="cs-card-title">
+              <h3>Dreiecksprisma</h3>
+              <p>Pflicht · dreieckige Grundfläche</p>
+            </div>
+            <span class="cs-chevron">▼</span>
+          </div>
+          <div class="cs-card-body">
+            <div class="formula-block">
+              <div class="formula-label">Grundfläche (Dreieck)</div>
+              <div class="formula">G <span class="op">=</span> (<span class="var">g</span> <span class="op">·</span> <span class="var">h<sub>g</sub></span>) <span class="op">/</span> 2</div>
+            </div>
+            <div class="formula-block">
+              <div class="formula-label">Volumen (Prisma-Formel)</div>
+              <div class="formula">V <span class="op">=</span> G <span class="op">·</span> <span class="var">h</span></div>
+            </div>
+            <div class="formula-block">
+              <div class="formula-label">Mantelfläche</div>
+              <div class="formula">M <span class="op">=</span> <span class="var">u</span> <span class="op">·</span> <span class="var">h</span></div>
+              <p class="formula-note">u = Umfang des Dreiecks = a + b + c</p>
+            </div>
+            <div class="formula-block">
+              <div class="formula-label">Oberfläche (gesamt)</div>
+              <div class="formula">O <span class="op">=</span> 2G <span class="op">+</span> M</div>
+            </div>
+            <div class="formula-vars">
+              <div class="fvar"><span class="fvar-key">g</span><span class="fvar-desc">Grundseite des Dreiecks</span></div>
+              <div class="fvar"><span class="fvar-key">h<sub>g</sub></span><span class="fvar-desc">Höhe des Dreiecks (auf g)</span></div>
+              <div class="fvar"><span class="fvar-key">h</span><span class="fvar-desc">Höhe des Prismas (Länge)</span></div>
+              <div class="fvar"><span class="fvar-key">u</span><span class="fvar-desc">Umfang der Dreieck-Grundfläche</span></div>
+            </div>
+            <p class="formula-note">💡 <strong>Merke:</strong> Das Dreiecksprisma ist ein Sonderfall des allgemeinen Prismas – Formel gilt für alle Prismen!</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PANEL: WEITERE KÖRPER -->
+    <div class="cs-panel" id="tab-weitere">
+      <div class="cs-grid">
+
+        <!-- QUADER -->
+        <div class="cs-card" id="card-quader">
+          <div class="cs-card-header" onclick="toggleCard('card-quader')">
+            <div class="cs-card-icon" style="background: rgba(108,99,255,0.15);">📦</div>
+            <div class="cs-card-title">
+              <h3>Quader</h3>
+              <p>Freie Wahl · rechteckige Flächen</p>
+            </div>
+            <span class="cs-chevron">▼</span>
+          </div>
+          <div class="cs-card-body">
+            <div class="formula-block">
+              <div class="formula-label">Volumen</div>
+              <div class="formula">V <span class="op">=</span> <span class="var">a</span> <span class="op">·</span> <span class="var">b</span> <span class="op">·</span> <span class="var">c</span></div>
+            </div>
+            <div class="formula-block">
+              <div class="formula-label">Oberfläche</div>
+              <div class="formula">O <span class="op">=</span> 2(<span class="var">ab</span> <span class="op">+</span> <span class="var">bc</span> <span class="op">+</span> <span class="var">ca</span>)</div>
+            </div>
+            <div class="formula-vars">
+              <div class="fvar"><span class="fvar-key">a, b</span><span class="fvar-desc">Länge und Breite der Grundfläche</span></div>
+              <div class="fvar"><span class="fvar-key">c</span><span class="fvar-desc">Höhe des Quaders</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PYRAMIDE -->
+        <div class="cs-card" id="card-pyramide">
+          <div class="cs-card-header" onclick="toggleCard('card-pyramide')">
+            <div class="cs-card-icon" style="background: rgba(255,107,53,0.15);">🔷</div>
+            <div class="cs-card-title">
+              <h3>Pyramide</h3>
+              <p>Freie Wahl · beliebige Grundfläche</p>
+            </div>
+            <span class="cs-chevron">▼</span>
+          </div>
+          <div class="cs-card-body">
+            <div class="formula-block">
+              <div class="formula-label">Volumen</div>
+              <div class="formula">V <span class="op">=</span> ⅓ <span class="op">·</span> G <span class="op">·</span> <span class="var">h</span></div>
+            </div>
+            <div class="formula-block">
+              <div class="formula-label">Oberfläche</div>
+              <div class="formula">O <span class="op">=</span> G <span class="op">+</span> M</div>
+              <p class="formula-note">M = Summe aller Seitendreiecke</p>
+            </div>
+            <div class="formula-vars">
+              <div class="fvar"><span class="fvar-key">G</span><span class="fvar-desc">Grundfläche (z. B. Quadrat: a²)</span></div>
+              <div class="fvar"><span class="fvar-key">h</span><span class="fvar-desc">Höhe der Pyramide</span></div>
+              <div class="fvar"><span class="fvar-key">s</span><span class="fvar-desc">Höhe der Seitenfläche (Apothema)</span></div>
+            </div>
+            <p class="formula-note">💡 <strong>Faktor ⅓</strong> gilt für alle Pyramiden – merke: ein Drittel des Prismas mit gleicher Grundfläche!</p>
+          </div>
+        </div>
+
+        <!-- KEGEL -->
+        <div class="cs-card" id="card-kegel">
+          <div class="cs-card-header" onclick="toggleCard('card-kegel')">
+            <div class="cs-card-icon" style="background: rgba(255,107,157,0.15);">🍦</div>
+            <div class="cs-card-title">
+              <h3>Kegel</h3>
+              <p>Freie Wahl · runde Spitze</p>
+            </div>
+            <span class="cs-chevron">▼</span>
+          </div>
+          <div class="cs-card-body">
+            <div class="formula-block">
+              <div class="formula-label">Grundfläche</div>
+              <div class="formula">G <span class="op">=</span> π <span class="op">·</span> <span class="var">r</span>²</div>
+            </div>
+            <div class="formula-block">
+              <div class="formula-label">Volumen</div>
+              <div class="formula">V <span class="op">=</span> ⅓ <span class="op">·</span> π <span class="op">·</span> <span class="var">r</span>² <span class="op">·</span> <span class="var">h</span></div>
+            </div>
+            <div class="formula-block">
+              <div class="formula-label">Mantelfläche</div>
+              <div class="formula">M <span class="op">=</span> π <span class="op">·</span> <span class="var">r</span> <span class="op">·</span> <span class="var">s</span></div>
+            </div>
+            <div class="formula-block">
+              <div class="formula-label">Oberfläche</div>
+              <div class="formula">O <span class="op">=</span> G <span class="op">+</span> M</div>
+            </div>
+            <div class="formula-vars">
+              <div class="fvar"><span class="fvar-key">r</span><span class="fvar-desc">Radius der Grundfläche</span></div>
+              <div class="fvar"><span class="fvar-key">h</span><span class="fvar-desc">Höhe des Kegels</span></div>
+              <div class="fvar"><span class="fvar-key">s</span><span class="fvar-desc">Mantellinie (Schräge von r bis Spitze)</span></div>
+            </div>
+            <p class="formula-note">📐 <strong>Pythagoras:</strong> s² = r² + h² → s = √(r² + h²)</p>
+          </div>
+        </div>
+
+        <!-- KUGEL -->
+        <div class="cs-card" id="card-kugel">
+          <div class="cs-card-header" onclick="toggleCard('card-kugel')">
+            <div class="cs-card-icon" style="background: rgba(0,180,216,0.15);">🌐</div>
+            <div class="cs-card-title">
+              <h3>Kugel / Halbkugel</h3>
+              <p>Freie Wahl · rund</p>
+            </div>
+            <span class="cs-chevron">▼</span>
+          </div>
+          <div class="cs-card-body">
+            <div class="formula-block">
+              <div class="formula-label">Volumen (ganze Kugel)</div>
+              <div class="formula">V <span class="op">=</span> 4/3 <span class="op">·</span> π <span class="op">·</span> <span class="var">r</span>³</div>
+            </div>
+            <div class="formula-block">
+              <div class="formula-label">Oberfläche (ganze Kugel)</div>
+              <div class="formula">O <span class="op">=</span> 4 <span class="op">·</span> π <span class="op">·</span> <span class="var">r</span>²</div>
+            </div>
+            <div class="formula-block">
+              <div class="formula-label">Halbkugel – Volumen</div>
+              <div class="formula">V <span class="op">=</span> ½ <span class="op">·</span> 4/3 <span class="op">·</span> π <span class="op">·</span> <span class="var">r</span>³ <span class="op">=</span> 2/3 <span class="op">·</span> π <span class="op">·</span> <span class="var">r</span>³</div>
+            </div>
+            <div class="formula-block">
+              <div class="formula-label">Halbkugel – Oberfläche</div>
+              <div class="formula">O <span class="op">=</span> 2π<span class="var">r</span>² <span class="op">+</span> π<span class="var">r</span>² <span class="op">=</span> 3π<span class="var">r</span>²</div>
+              <p class="formula-note">= gewölbte Fläche (2πr²) + Kreisscheibe (πr²)</p>
+            </div>
+            <div class="formula-vars">
+              <div class="fvar"><span class="fvar-key">r</span><span class="fvar-desc">Radius der Kugel</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- WÜRFEL -->
+        <div class="cs-card" id="card-wuerfel">
+          <div class="cs-card-header" onclick="toggleCard('card-wuerfel')">
+            <div class="cs-card-icon" style="background: rgba(255,211,61,0.15);">🎲</div>
+            <div class="cs-card-title">
+              <h3>Würfel</h3>
+              <p>Freie Wahl · alle Seiten gleich</p>
+            </div>
+            <span class="cs-chevron">▼</span>
+          </div>
+          <div class="cs-card-body">
+            <div class="formula-block">
+              <div class="formula-label">Volumen</div>
+              <div class="formula">V <span class="op">=</span> <span class="var">a</span>³</div>
+            </div>
+            <div class="formula-block">
+              <div class="formula-label">Oberfläche</div>
+              <div class="formula">O <span class="op">=</span> 6 <span class="op">·</span> <span class="var">a</span>²</div>
+            </div>
+            <div class="formula-vars">
+              <div class="fvar"><span class="fvar-key">a</span><span class="fvar-desc">Kantenlänge (alle 12 Kanten gleich lang)</span></div>
+            </div>
+            <p class="formula-note">💡 Sonderfall des Quaders mit a = b = c</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PANEL: EBENE FIGUREN -->
+    <div class="cs-panel" id="tab-flaechen">
+      <div class="cs-grid">
+
+        <!-- KREIS -->
+        <div class="cs-card" id="card-kreis">
+          <div class="cs-card-header" onclick="toggleCard('card-kreis')">
+            <div class="cs-card-icon" style="background: rgba(255,107,53,0.15);">⭕</div>
+            <div class="cs-card-title">
+              <h3>Kreis</h3>
+              <p>Grundfläche des Zylinders & Kegels</p>
+            </div>
+            <span class="cs-chevron">▼</span>
+          </div>
+          <div class="cs-card-body">
+            <div class="formula-block">
+              <div class="formula-label">Flächeninhalt</div>
+              <div class="formula">A <span class="op">=</span> π <span class="op">·</span> <span class="var">r</span>²</div>
+            </div>
+            <div class="formula-block">
+              <div class="formula-label">Umfang</div>
+              <div class="formula">u <span class="op">=</span> 2 <span class="op">·</span> π <span class="op">·</span> <span class="var">r</span></div>
+            </div>
+            <div class="formula-block">
+              <div class="formula-label">Durchmesser</div>
+              <div class="formula">d <span class="op">=</span> 2 <span class="op">·</span> <span class="var">r</span></div>
+            </div>
+            <div class="formula-vars">
+              <div class="fvar"><span class="fvar-key">r</span><span class="fvar-desc">Radius (Mittelpunkt bis Rand)</span></div>
+              <div class="fvar"><span class="fvar-key">d</span><span class="fvar-desc">Durchmesser = 2 · r</span></div>
+              <div class="fvar"><span class="fvar-key">π</span><span class="fvar-desc">≈ 3,14159… (Taschenrechner nutzen!)</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DREIECK -->
+        <div class="cs-card" id="card-dreieck">
+          <div class="cs-card-header" onclick="toggleCard('card-dreieck')">
+            <div class="cs-card-icon" style="background: rgba(0,201,167,0.15);">🔺</div>
+            <div class="cs-card-title">
+              <h3>Dreieck</h3>
+              <p>Grundfläche des Prismas</p>
+            </div>
+            <span class="cs-chevron">▼</span>
+          </div>
+          <div class="cs-card-body">
+            <div class="formula-block">
+              <div class="formula-label">Flächeninhalt</div>
+              <div class="formula">A <span class="op">=</span> (<span class="var">g</span> <span class="op">·</span> <span class="var">h</span>) <span class="op">/</span> 2</div>
+            </div>
+            <div class="formula-block">
+              <div class="formula-label">Umfang</div>
+              <div class="formula">u <span class="op">=</span> <span class="var">a</span> <span class="op">+</span> <span class="var">b</span> <span class="op">+</span> <span class="var">c</span></div>
+            </div>
+            <div class="formula-vars">
+              <div class="fvar"><span class="fvar-key">g</span><span class="fvar-desc">gewählte Grundseite</span></div>
+              <div class="fvar"><span class="fvar-key">h</span><span class="fvar-desc">zugehörige Höhe auf g</span></div>
+              <div class="fvar"><span class="fvar-key">a, b, c</span><span class="fvar-desc">die drei Seiten des Dreiecks</span></div>
+            </div>
+            <p class="formula-note">💡 Beim rechtwinkligen Dreieck: <strong>Pythagoras!</strong> a² + b² = c²</p>
+          </div>
+        </div>
+
+        <!-- RECHTECK -->
+        <div class="cs-card" id="card-rechteck">
+          <div class="cs-card-header" onclick="toggleCard('card-rechteck')">
+            <div class="cs-card-icon" style="background: rgba(108,99,255,0.15);">▬</div>
+            <div class="cs-card-title">
+              <h3>Rechteck / Quadrat</h3>
+              <p>Grundfläche des Quaders</p>
+            </div>
+            <span class="cs-chevron">▼</span>
+          </div>
+          <div class="cs-card-body">
+            <div class="formula-block">
+              <div class="formula-label">Rechteck – Flächeninhalt</div>
+              <div class="formula">A <span class="op">=</span> <span class="var">a</span> <span class="op">·</span> <span class="var">b</span></div>
+            </div>
+            <div class="formula-block">
+              <div class="formula-label">Rechteck – Umfang</div>
+              <div class="formula">u <span class="op">=</span> 2<span class="var">a</span> <span class="op">+</span> 2<span class="var">b</span></div>
+            </div>
+            <div class="formula-block">
+              <div class="formula-label">Quadrat – Fläche & Umfang</div>
+              <div class="formula">A <span class="op">=</span> <span class="var">a</span>² &nbsp;|&nbsp; u <span class="op">=</span> 4<span class="var">a</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PYTHAGORAS -->
+        <div class="cs-card" id="card-pyth">
+          <div class="cs-card-header" onclick="toggleCard('card-pyth')">
+            <div class="cs-card-icon" style="background: rgba(255,211,61,0.15);">📐</div>
+            <div class="cs-card-title">
+              <h3>Satz des Pythagoras</h3>
+              <p>Für alle rechtwinkligen Dreiecke</p>
+            </div>
+            <span class="cs-chevron">▼</span>
+          </div>
+          <div class="cs-card-body">
+            <div class="formula-block">
+              <div class="formula-label">Grundformel</div>
+              <div class="formula"><span class="var">a</span>² <span class="op">+</span> <span class="var">b</span>² <span class="op">=</span> <span class="var">c</span>²</div>
+            </div>
+            <div class="formula-block">
+              <div class="formula-label">Hypotenuse berechnen</div>
+              <div class="formula"><span class="var">c</span> <span class="op">=</span> √(<span class="var">a</span>² <span class="op">+</span> <span class="var">b</span>²)</div>
+            </div>
+            <div class="formula-block">
+              <div class="formula-label">Kathete berechnen</div>
+              <div class="formula"><span class="var">a</span> <span class="op">=</span> √(<span class="var">c</span>² <span class="op">−</span> <span class="var">b</span>²)</div>
+            </div>
+            <div class="formula-vars">
+              <div class="fvar"><span class="fvar-key">c</span><span class="fvar-desc">Hypotenuse = längste Seite, gegenüber dem rechten Winkel</span></div>
+              <div class="fvar"><span class="fvar-key">a, b</span><span class="fvar-desc">die beiden Katheten</span></div>
+            </div>
+            <p class="formula-note">💡 Braucht ihr beim Kegel: s = √(r² + h²)</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PANEL: EINHEITEN -->
+    <div class="cs-panel" id="tab-einheiten">
+      <div class="units-grid reveal">
+        <div class="unit-box">
+          <h4>📏 Länge</h4>
+          <div class="unit-chain">
+            <div class="unit-row"><span class="unit-val">1 km</span><span class="unit-eq">=</span><span class="unit-res">1 000 m</span></div>
+            <div class="unit-row"><span class="unit-val">1 m</span><span class="unit-eq">=</span><span class="unit-res">10 dm</span></div>
+            <div class="unit-row"><span class="unit-val">1 dm</span><span class="unit-eq">=</span><span class="unit-res">10 cm</span></div>
+            <div class="unit-row"><span class="unit-val">1 cm</span><span class="unit-eq">=</span><span class="unit-res">10 mm</span></div>
+          </div>
+        </div>
+        <div class="unit-box">
+          <h4>📐 Fläche</h4>
+          <div class="unit-chain">
+            <div class="unit-row"><span class="unit-val">1 m²</span><span class="unit-eq">=</span><span class="unit-res">100 dm²</span></div>
+            <div class="unit-row"><span class="unit-val">1 dm²</span><span class="unit-eq">=</span><span class="unit-res">100 cm²</span></div>
+            <div class="unit-row"><span class="unit-val">1 cm²</span><span class="unit-eq">=</span><span class="unit-res">100 mm²</span></div>
+          </div>
+        </div>
+        <div class="unit-box">
+          <h4>📦 Volumen</h4>
+          <div class="unit-chain">
+            <div class="unit-row"><span class="unit-val">1 m³</span><span class="unit-eq">=</span><span class="unit-res">1 000 dm³</span></div>
+            <div class="unit-row"><span class="unit-val">1 dm³</span><span class="unit-eq">=</span><span class="unit-res">1 000 cm³</span></div>
+            <div class="unit-row"><span class="unit-val">1 cm³</span><span class="unit-eq">=</span><span class="unit-res">1 000 mm³</span></div>
+          </div>
+        </div>
+        <div class="unit-box">
+          <h4>💧 Liter</h4>
+          <div class="unit-chain">
+            <div class="unit-row"><span class="unit-val">1 L</span><span class="unit-eq">=</span><span class="unit-res">1 dm³</span></div>
+            <div class="unit-row"><span class="unit-val">1 mL</span><span class="unit-eq">=</span><span class="unit-res">1 cm³</span></div>
+            <div class="unit-row"><span class="unit-val">1 L</span><span class="unit-eq">=</span><span class="unit-res">1 000 mL</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="highlight-box reveal" style="margin-top: 24px;">
+        🎯 Für euer Projekt: Volumen immer in <strong>dm³ = Liter</strong> umrechnen, um zu prüfen ob es zwischen 0,5 L und 1,5 L liegt!
+      </div>
+
+      <div style="margin-top: 20px; padding: 20px; background: rgba(255,255,255,0.04); border-radius: 14px; border: 1px solid rgba(255,255,255,0.06);" class="reveal">
+        <p style="font-family:'Boogaloo',cursive; font-size:1.1rem; margin-bottom:12px; color:var(--yellow);">🔁 Umrechnungs-Trick</p>
+        <p style="font-size:0.88rem; color:rgba(255,255,255,0.65); line-height:1.7;">
+          Bei <strong style="color:white;">Flächen</strong>: Hochzahl ² → jede Stufe mal 100 (nicht mal 10!)<br>
+          Bei <strong style="color:white;">Volumen</strong>: Hochzahl ³ → jede Stufe mal 1 000 (nicht mal 10!)<br>
+          Beispiel: 250 cm³ → ÷ 1 000 → 0,25 dm³ = 0,25 L
+        </p>
+      </div>
+    </div>
+
+    <div class="cs-source-note reveal">
+      Alle Formeln entsprechen der <strong>offiziellen Formelsammlung Mathematik ZP10 NRW (Anforderungsniveau MSA)</strong> · Ministerium für Schule und Bildung NRW
+    </div>
+  </div>
+</section>
+
+<!-- TIPPS -->
+<section id="tipps">
+  <div class="section-inner">
+    <span class="section-tag reveal" style="color: var(--yellow);">Pro-Tipps</span>
+    <h2 class="section-title reveal">So wird's richtig gut</h2>
+    <p class="section-desc reveal">Ein paar Hinweise von uns – für die, die mehr wollen als "irgendwie abgeben".</p>
+
+    <div class="tips-grid">
+      <div class="tip-card reveal">
+        <span class="tip-icon">🎯</span>
+        <div>
+          <h4>Erst rechnen, dann zeichnen</h4>
+          <p>Überlegt vorher, ob eure Maße auch ein vernünftiges Volumen ergeben. Lieber früh nachrechnen als am Ende alles neu zeichnen müssen.</p>
+        </div>
+      </div>
+      <div class="tip-card reveal">
+        <span class="tip-icon">📐</span>
+        <div>
+          <h4>Netz = Prüfstein für Verständnis</h4>
+          <p>Wenn ihr ein vollständiges, richtiges Netz zeichnen könnt, habt ihr wirklich verstanden, wie eure Körper aufgebaut sind. Das merkt man auch im Fachgespräch.</p>
+        </div>
+      </div>
+      <div class="tip-card reveal">
+        <span class="tip-icon">📱</span>
+        <div>
+          <h4>Video früh aufnehmen</h4>
+          <p>Nehmt das Video auf, solange die Rechnungen noch frisch im Kopf sind. Nicht erst kurz vor der Abgabe. Ein Probelauf hilft euch zu merken, wo noch Lücken sind.</p>
+        </div>
+      </div>
+      <div class="tip-card reveal">
+        <span class="tip-icon">🔢</span>
+        <div>
+          <h4>Einheiten immer mitschreiben</h4>
+          <p>Jedes Zwischenergebnis, jedes Endergebnis – immer mit Einheit. cm³ oder dm³? Liter = dm³. Das ist kein Detail, das wird bewertet. Gilt für beide Personen.</p>
+        </div>
+      </div>
+      <div class="tip-card reveal">
+        <span class="tip-icon">🤖</span>
+        <div>
+          <h4>KI clever nutzen</h4>
+          <p>Lasst euch Formeln erklären, lasst Rechnungen überprüfen – aber versteht immer, was die KI sagt. Im Fachgespräch ist jede Person allein.</p>
+        </div>
+      </div>
+      <div class="tip-card reveal">
+        <span class="tip-icon">📖</span>
+        <div>
+          <h4>Buch & Formelsammlung nutzen</h4>
+          <p>Die sind da. Nutzt sie. Formeln auswendig lernen müsst ihr nicht – aber ihr müsst wissen, wie man sie anwendet.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABGABE CHECKLISTE -->
+<section id="abgabe">
+  <div class="section-inner">
+    <span class="section-tag reveal" style="color: var(--teal);">Abgabe</span>
+    <h2 class="section-title reveal">Eure Abgabe-Checkliste</h2>
+    <p class="section-desc reveal">Klickt alles an, was ihr fertig habt. Wenn alles grün ist, seid ihr ready. Abgabe über Microsoft Teams.</p>
+
+    <div class="abgabe-checklist" id="checklist">
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <span>📐 Konstruktionszeichnung + Netz – vollständig und bemaßt</span>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <span>📊 Gesamtvolumen zwischen 0,5 L und 1,5 L nachgerechnet (beide Personen)</span>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <span>🧮 Berechnungen – handschriftlich, Formel + Werte + Ergebnis</span>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <span>🎬 Erklärvideo aufgenommen – Aufgabenteilung eingehalten, Abgabe via Teams</span>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <span>📝 Finaler Prompt schriftlich in Projektmappe eingetragen (gemeinsam) (gemeinsam)</span>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <span>🎨 KI-Bild erstellt – realistisch, Verpackung erkennbar</span>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <span>📋 KI-Reflexion zum Bild vollständig ausgefüllt (Projektmappe, gemeinsam)</span>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <span>💬 Fachgespräch vorbereitet – beide Personen können alle Rechnungen erklären</span>
+      </div>
+
+    </div>
+
+    <div id="progress-area" style="margin-top:32px; text-align:center;">
+      <div style="background:rgba(255,255,255,0.06); border-radius:30px; height:12px; overflow:hidden; margin-bottom:12px;">
+        <div id="progressBar" style="height:100%; width:0%; background: linear-gradient(90deg, var(--teal), var(--blue)); border-radius:30px; transition: width 0.5s ease;"></div>
+      </div>
+      <p id="progressText" style="font-family:'Space Mono',monospace; font-size:0.85rem; color:rgba(255,255,255,0.5);">0 von 8 erledigt</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>📦 <strong>Die Perfekte Verpackung</strong> – Mathematik Klasse 9 E-Kurs</p>
+  <p style="margin-top:8px;">Gesamtschule Pulheim · Schuljahr 2025/26 · Thema: Zylinder, Dreiecksprisma und verwandte Körper</p>
+</footer>
+
+<!-- FLOATING FOBIZZ BUTTON -->
+<div class="fobizz-float">
+  <span class="fobizz-float-label">KI-Assistent</span>
+  <a href="https://app.fobizz.com/ai/chats/public_assistants/484b9106-be89-4310-8ae7-16ecf67c8592?token=88e52c7ac885c9795c8be795b3ed4ac5" target="_blank" class="fobizz-float-btn" title="KI-Assistent öffnen">🤖</a>
+</div>
+
+<script>
+  // ===== CHEATSHEET TABS =====
+  function showTab(id) {
+    document.querySelectorAll('.cs-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.cs-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  function toggleCard(id) {
+    const card = document.getElementById(id);
+    card.classList.toggle('open');
+  }
+
+  // ===== SCROLL REVEAL =====
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  reveals.forEach(el => observer.observe(el));
+
+  // ===== CHECKLIST =====
+  function toggleCheck(item) {
+    item.classList.toggle('done');
+    const box = item.querySelector('.check-box');
+    box.textContent = item.classList.contains('done') ? '✓' : '';
+    updateProgress();
+  }
+
+  function updateProgress() {
+    const total = document.querySelectorAll('.check-item').length;
+    const done = document.querySelectorAll('.check-item.done').length;
+    const pct = (done / total) * 100;
+    document.getElementById('progressBar').style.width = pct + '%';
+    document.getElementById('progressText').textContent = done + ' von ' + total + ' erledigt';
+    if (done === total) {
+      document.getElementById('progressText').textContent = '🎉 Alles fertig! Ihr seid ready!';
+      document.getElementById('progressText').style.color = 'var(--teal)';
+    }
+  }
+
+  // ===== CANVAS ANIMATION (particle grid) =====
+  const canvas = document.getElementById('heroCanvas');
+  const ctx = canvas.getContext('2d');
+  let W, H, particles;
+
+  function initCanvas() {
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+    particles = [];
+    const count = Math.floor((W * H) / 22000);
+    for (let i = 0; i < count; i++) {
+      particles.push({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        r: Math.random() * 1.5 + 0.5,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        color: ['#FFD93D','#00C9A7','#6C63FF','#FF6B9D','#00B4D8'][Math.floor(Math.random()*5)]
+      });
+    }
+  }
+
+  function drawCanvas() {
+    ctx.clearRect(0, 0, W, H);
+    particles.forEach(p => {
+      p.x += p.vx;
+      p.y += p.vy;
+      if (p.x < 0) p.x = W;
+      if (p.x > W) p.x = 0;
+      if (p.y < 0) p.y = H;
+      if (p.y > H) p.y = 0;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = p.color;
+      ctx.fill();
+    });
+    // draw connections
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i+1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < 120) {
+          ctx.beginPath();
+          ctx.strokeStyle = `rgba(255,255,255,${0.06 * (1 - dist/120)})`;
+          ctx.lineWidth = 0.5;
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(drawCanvas);
+  }
+
+  initCanvas();
+  drawCanvas();
+  window.addEventListener('resize', initCanvas);
+</script>
+</body>
+</html>
